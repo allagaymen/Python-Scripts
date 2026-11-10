@@ -8,11 +8,11 @@ Eight small Python projects written while learning the language: two turtle game
 | --- | --- |
 | `1_Quiz_challenge` | True or false quiz in the terminal that keeps score. |
 | `2_snake_game` | Snake game drawn with `turtle`, with a scoreboard that saves the high score to `data.txt`. |
-| `3_US_State_Game` | Guess the 50 US states; each correct answer is written on a blank map. |
-| `4_pomodoro` | Tkinter interface for a Pomodoro timer (the timer logic is not written yet). |
+| `3_US_State_Game` | Guess the 50 US states; each correct answer is written on a blank map, and the states you missed are saved to `states_to_learn.csv`. |
+| `4_pomodoro` | Tkinter Pomodoro timer: 25 minute work sessions, 5 minute breaks and a 20 minute break after every fourth session, with a tick for each finished session. |
 | `5_mail_tracker` | Fills a letter template with each name from a list and saves one letter per person. |
 | `6_Amazon_price_tracker` | Scrapes the price of an Amazon product and sends an email alert when it drops below a set price. |
-| `7_Musical_Time_Machine` | Scrapes song titles from a Billboard Hot 100 chart. |
+| `7_Musical_Time_Machine` | Asks for a date and scrapes the song titles from the Billboard Hot 100 chart for that day. |
 | `8_data_entry_job_automation` | Scrapes rental listings from Zillow and enters them into a Google Form with Selenium. |
 
 ## Tech
@@ -35,8 +35,21 @@ python main.py
 The scraping scripts need extra packages:
 
 ```bash
-pip install pandas requests beautifulsoup4 lxml selenium
+pip install -r requirements.txt
 ```
+
+The Amazon price tracker sends its alert from a Gmail account. Set the address and a Gmail app password as environment variables before running it:
+
+```bash
+export ALERT_EMAIL="you@gmail.com"
+export ALERT_EMAIL_APP_PASSWORD="your-app-password"
+```
+
+The Zillow and Billboard pages change their HTML often, so the CSS class names in those scrapers may need updating.
+
+## Changes since 2023
+
+Ahmed Amine Tiffrent moved the Gmail login out of the code, fixed bugs in the quiz, the US states export, the chart date and the listing scraper, finished the Pomodoro timer and added `requirements.txt`.
 
 ---
 
