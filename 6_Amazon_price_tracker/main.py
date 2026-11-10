@@ -1,7 +1,12 @@
+import os
+import smtplib
+
 from bs4 import BeautifulSoup
 import requests
-import lxml
-import smtplib
+
+# Gmail address and app password are read from the environment, never stored in the code
+EMAIL = os.environ["ALERT_EMAIL"]
+APP_PASSWORD = os.environ["ALERT_EMAIL_APP_PASSWORD"]
 
 # Get the product price
 url = "https://www.amazon.com/dp/B09TYVYRD9/ref=syn_sd_onsite_desktop_121?ie=UTF8&psc=1&pd_rd_plhdr=t"
@@ -28,12 +33,10 @@ if price_as_float < BUY_PRICE:
 
     with smtplib.SMTP('smtp.gmail.com', port=587) as connection:
         connection.starttls()
-        result = connection.login('allagaymen607@gmail.com', 'wdardvuusxgzifnw')
+        result = connection.login(EMAIL, APP_PASSWORD)
         print(result)
         connection.sendmail(
-            from_addr='allagaymen607@gmail.com',
-            to_addrs='allagaymen607@gmail.com',
+            from_addr=EMAIL,
+            to_addrs=EMAIL,
             msg=f"Subject:Amazon Price Alert!\n{message}\n{url}"
         )
-
-

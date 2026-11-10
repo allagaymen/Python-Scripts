@@ -67,13 +67,3 @@ for n in range(len(appartement_prices)):
     submit_button.click()
 
 driver.quit()
-
-#email_address: WebElement = driver.find_element(By.XPATH, '/html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[2]/div/div[1]/div/form/span/section/div/div/div[1]/div/div[1]/div/div[1]/input')
-#email_address.send_keys("a.allag@esi-sba.dz")
-#btn_email: WebElement = driver.find_element(By.XPATH, '/html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[2]/div/div[2]/div/div[1]/div/div/button')
-#btn_email.click()
-#password_address: WebElement = driver.find_element(By.XPATH, '/html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[2]/div/div[1]/div/form/span/section[2]/div/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]/input')
-#password_address.send_keys("Zinou1234#")
-#btn_password: WebElement = driver.find_element(By.XPATH, '/html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[2]/div/div[2]/div/div[1]/div/div/button')
-#btn_password.click()
-
