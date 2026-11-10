@@ -1,12 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
-import lxml
 from selenium import webdriver
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 import time
-
-from selenium.webdriver.remote.webelement import WebElement
 
 form_link = "https://docs.google.com/forms/d/e/1FAIpQLSel58_PvciOuOVXIOv8tdff4fEFfe1Fx94oFJ38r8brhOxyRQ/viewform?usp=sf_link"
 
@@ -22,7 +19,7 @@ soup: BeautifulSoup = BeautifulSoup(zillow_link, "lxml")
 price_lists= soup.findAll(name="div", class_='StyledPropertyCardDataArea-c11n-8-82-3__sc-yipmu-0 gMDnGj')
 
 appartement_prices = []
-for n in range(len(price_lists)-1):
+for n in range(len(price_lists)):
     price = price_lists[n]
     appartement_prices.append(price.text)
 
@@ -32,7 +29,7 @@ print(appartement_prices)
 address_lists = soup.findAll(name="address")
 
 appartement_address = []
-for n in range(len(address_lists)-1):
+for n in range(len(address_lists)):
     address = address_lists[n]
     appartement_address.append(address.text)
 
@@ -42,17 +39,18 @@ print(appartement_address)
 links_lists = soup.findAll(name="a", class_='StyledPropertyCardDataArea-c11n-8-82-3__sc-yipmu-0 hiBOYq property-card-link')
 
 appartement_links = []
-for n in range(len(links_lists)-1):
+for n in range(len(links_lists)):
     link = links_lists[n]['href']
     appartement_links.append(link)
 
 print(appartement_links)
 
 # FILL FORM
-chrome_driver_path = '/home/aymen-allag/Desktop/dev/chromedriver_linux64/chromedriver'
-driver: WebDriver = webdriver.Chrome(executable_path=chrome_driver_path)
+# Selenium 4 finds or downloads a matching ChromeDriver by itself
+driver: WebDriver = webdriver.Chrome()
 
-for n in range(len(appartement_prices)):
+# Only fill the form for listings where price, address and link were all found
+for n in range(min(len(appartement_prices), len(appartement_address), len(appartement_links))):
     driver.get(form_link)
     time.sleep(5)
 

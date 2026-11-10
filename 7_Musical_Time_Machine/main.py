@@ -9,7 +9,7 @@ date1 = datetime.date(year, month, day)
 
 print(date1)
 
-response = requests.get("https://www.billboard.com/charts/hot-100/2000-08-12/")
+response = requests.get(f"https://www.billboard.com/charts/hot-100/{date1.isoformat()}/")
 response_text = response.text
 
 soup = BeautifulSoup(response.text, 'html.parser')
